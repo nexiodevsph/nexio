@@ -4,12 +4,12 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-slate-800 bg-slate-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-5 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="footer-grid grid md:grid-cols-5 gap-8 sm:gap-12">
           {/* Company Info */}
-          <div className="col-span-2">
-            <h3 className="text-2xl font-bold text-white mb-4">Nexio Dev</h3>
-            <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
+          <div className="col-span-2 md:col-span-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Nexio Dev</h3>
+            <p className="text-gray-400 mb-6 max-w-md leading-relaxed text-sm sm:text-base">
               We provide comprehensive digital solutions to help your startup grow and succeed in the modern marketplace. 
               From web development to mobile apps, we turn your ideas into reality.
             </p>
@@ -86,19 +86,19 @@ export default function Footer() {
         </div>
 
         {/* Newsletter Section */}
-        <div className="border-t border-slate-800 mt-12 pt-12">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="border-t border-slate-800 mt-8 sm:mt-12 pt-8 sm:pt-12">
+          <div className="newsletter-section grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div>
-              <h3 className="text-white font-semibold mb-2">Stay Updated</h3>
-              <p className="text-gray-400">Subscribe to our newsletter for the latest updates and insights.</p>
+              <h3 className="text-white font-semibold mb-2 text-lg sm:text-xl">Stay Updated</h3>
+              <p className="text-gray-400 text-sm sm:text-base">Subscribe to our newsletter for the latest updates and insights.</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-col sm:flex-row">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                className="newsletter-input flex-1 px-4 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors text-sm sm:text-base"
               />
-              <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+              <button className="button-touch px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm sm:text-base">
                 Subscribe
               </button>
             </div>
@@ -106,14 +106,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 mb-4 md:mb-0">
+        <div className="border-t border-slate-800 mt-8 sm:mt-12 pt-6 sm:pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <p className="text-gray-400 mb-4 md:mb-0 text-sm sm:text-base">
               © 2026 Nexio Dev. All rights reserved.
             </p>
-            <div className="flex items-center space-x-6 text-sm text-gray-400">
+            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm sm:text-base text-gray-400">
               <span>Made with love in Philippines</span>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <span>Powered by Next.js</span>
             </div>
           </div>
