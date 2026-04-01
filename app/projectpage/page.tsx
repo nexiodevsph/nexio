@@ -21,6 +21,8 @@ interface Project {
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 6;
 
   const projects: Project[] = [
     {
@@ -147,6 +149,33 @@ export default function ProjectsPage() {
         "/images/Graphic/PTA Accounting/PTA Accounting2.png",
         "/images/Graphic/PTA Accounting/PTA Accounting3.png"
       ]
+    },
+    {
+      id: 7,
+      title: "DPWH Project Management",
+      description: "Department of Public Works and Highways project management system for monitoring existing infrastructure projects and their construction status. Designed for construction departments to track project progress, milestones, and completion status efficiently.",
+      image: "/images/Graphic/DPWH-Proj/Dashboard.png",
+      status: "Local",
+      tags: ["Web App", "Project Management", "Government", "Construction", "Laravel", "MySQL"],
+      link: null,
+      features: [
+        "Project monitoring",
+        "Construction status tracking",
+        "Contractor management",
+        "Document archives",
+        "Category management",
+        "Dashboard analytics"
+      ],
+      gallery: [
+        "/images/Graphic/DPWH-Proj/LandingPage.png",
+        "/images/Graphic/DPWH-Proj/Dashboard.png",
+        "/images/Graphic/DPWH-Proj/ManageProject.png",
+        "/images/Graphic/DPWH-Proj/Contractors.png",
+        "/images/Graphic/DPWH-Proj/Category.png",
+        "/images/Graphic/DPWH-Proj/Gallery.png",
+        "/images/Graphic/DPWH-Proj/Archives.png",
+        "/images/Graphic/DPWH-Proj/Login.png"
+      ]
     }
   ];
 
@@ -176,6 +205,14 @@ export default function ProjectsPage() {
     }
   };
 
+  // Pagination logic
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col">
       <Header />
@@ -194,7 +231,7 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {projects.map((project) => (
+          {currentProjects.map((project) => (
             <div key={project.id} className="group relative bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-300">
               {/* Status Badge */}
               <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
@@ -282,6 +319,49 @@ export default function ProjectsPage() {
             </div>
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-4 mt-8 sm:mt-12">
+            <button
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="button-touch px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:opacity-50 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Previous
+            </button>
+
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => paginate(i + 1)}
+                  className={`button-touch w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-medium transition-colors text-sm sm:text-base ${
+                    currentPage === i + 1
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-700 hover:bg-gray-600 text-gray-300'
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="button-touch px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:opacity-50 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
+            >
+              Next
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
 
         {/* Back to Home */}
         <div className="text-center mt-12 sm:mt-16">

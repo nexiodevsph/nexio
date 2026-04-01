@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -334,6 +335,19 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+          
+          {/* See More Button */}
+          <div className="text-center mt-8 sm:mt-12">
+            <Link 
+              href="/projectpage"
+              className="button-touch inline-flex items-center px-6 sm:px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
+            >
+              See More
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </section>
       </main>

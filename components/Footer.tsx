@@ -112,7 +112,6 @@ export default function Footer() {
               © 2026 Nexio Dev. All rights reserved.
             </p>
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm sm:text-base text-gray-400">
-              <span>Made with love in Philippines</span>
               <span className="hidden sm:inline">•</span>
               <span>Powered by Next.js</span>
             </div>

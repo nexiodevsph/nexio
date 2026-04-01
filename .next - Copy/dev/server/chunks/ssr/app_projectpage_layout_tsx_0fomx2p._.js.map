@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/laragon/www/NexioDev/app/projectpage/layout.tsx"],"sourcesContent":["export default function ProjectsLayout({\r\n  children,\r\n}: {\r\n  children: React.ReactNode;\r\n}) {\r\n  return (\r\n    <section className=\"min-h-screen bg-slate-900 text-white\">\r\n      {children}\r\n    </section>\r\n  );\r\n}"],"names":["ProjectsLayout","children","className"],"mappings":";;;;;;AAAe,SAASA,eAAe,EACrCC,QAAQ,EAGT;IACC,qBACE,8OAAC;QAAQC,WAAU;kBAChBD;;;;;;AAGP"}}]
+}
