@@ -32,6 +32,8 @@ export default function Header() {
                 alt="Nexio Dev Logo"
                 width={150}
                 height={150}
+                sizes="(max-width: 768px) 120px, 150px"
+                style={{ height: 'auto' }}
               />
           </div>
 

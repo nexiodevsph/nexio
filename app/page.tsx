@@ -35,6 +35,9 @@ export default function Home() {
                   alt="PC Laptop showing development work"
                   fill
                   className="object-contain w-full h-full responsive-img"
+                  sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, (max-width: 1024px) 448px, (max-width: 1280px) 512px, 640px"
+                  loading="eager"
+                  priority
                 />
               </div>
             </div>
@@ -70,6 +73,7 @@ export default function Home() {
                       width={32}
                       height={32}
                       className="object-contain responsive-img"
+                      style={{ height: 'auto' }}
                     />
                   </div>
                   <span className="mt-1 sm:mt-2 text-xs text-gray-300 group-hover:text-white transition-colors text-center">
@@ -107,6 +111,7 @@ export default function Home() {
                         width={40}
                         height={40}
                         className="object-contain responsive-img"
+                        style={{ height: 'auto' }}
                       />
                     </div>
                     <span className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors">
@@ -140,6 +145,7 @@ export default function Home() {
                         width={40}
                         height={40}
                         className="object-contain responsive-img"
+                        style={{ height: 'auto' }}
                       />
                     </div>
                     <span className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors">

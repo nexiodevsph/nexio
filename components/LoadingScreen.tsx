@@ -49,6 +49,7 @@ export default function LoadingScreen() {
               alt="Nexio Dev Logo"
               fill
               className="object-contain responsive-img"
+              sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, (max-width: 1024px) 224px, 256px"
               priority
             />
           </div>

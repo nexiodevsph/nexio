@@ -4,7 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 interface Project {
   id: number;
@@ -21,7 +22,8 @@ interface Project {
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const projectsPerPage = 6;
 
   const projects: Project[] = [
@@ -229,6 +231,16 @@ export default function ProjectsPage() {
     }
   ];
 
+  // Get current page from URL params, default to 1 if not present
+  const rawPage = searchParams.get('page');
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const currentPage = Math.max(1, Math.min(totalPages, parseInt(rawPage || '1')));
+  const setCurrentPage = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('page', page.toString());
+    router.push(`/projectpage?${params.toString()}`, { scroll: false });
+  };
+
   const openModal = (project: Project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
@@ -256,7 +268,6 @@ export default function ProjectsPage() {
   };
 
   // Pagination logic
-  const totalPages = Math.ceil(projects.length / projectsPerPage);
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
@@ -267,8 +278,7 @@ export default function ProjectsPage() {
   console.log('Total pages:', totalPages);
   console.log('Current projects:', currentProjects.map(p => ({ id: p.id, title: p.title })));
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
+  
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col">
       <Header />
@@ -321,6 +331,9 @@ export default function ProjectsPage() {
                     alt={project.title}
                     fill
                     className="object-contain group-hover:scale-110 transition-transform duration-500 responsive-img"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 33vw"
+                    loading={project.image === "/images/Graphic/DP-Profiling/dashboard.png" ? "eager" : "lazy"}
+                    priority={project.image === "/images/Graphic/DP-Profiling/dashboard.png"}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                     <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white/0 group-hover:text-white/80 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -380,7 +393,7 @@ export default function ProjectsPage() {
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-4 mt-8 sm:mt-12">
             <button
-              onClick={() => paginate(currentPage - 1)}
+              onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
               className="button-touch px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:opacity-50 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
             >
@@ -394,7 +407,7 @@ export default function ProjectsPage() {
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
                   key={i + 1}
-                  onClick={() => paginate(i + 1)}
+                  onClick={() => setCurrentPage(i + 1)}
                   className={`button-touch w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                     currentPage === i + 1
                       ? 'bg-blue-600 text-white'
@@ -407,7 +420,7 @@ export default function ProjectsPage() {
             </div>
 
             <button
-              onClick={() => paginate(currentPage + 1)}
+              onClick={() => setCurrentPage(currentPage + 1)}
               disabled={currentPage === totalPages}
               className="button-touch px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:opacity-50 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
             >
@@ -524,6 +537,7 @@ export default function ProjectsPage() {
                       alt={`Thumbnail ${index + 1}`}
                       fill
                       className="object-cover responsive-img"
+                      sizes="(max-width: 640px) 48px, 64px"
                     />
                   </button>
                 ))}
