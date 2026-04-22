@@ -176,6 +176,56 @@ export default function ProjectsPage() {
         "/images/Graphic/DPWH-Proj/Archives.png",
         "/images/Graphic/DPWH-Proj/Login.png"
       ]
+    },
+    {
+      id: 8,
+      title: "DPWH PROFILING SYSTEM",
+      description: "Department of Public Works and Highways profiling system for comprehensive employee and historical data management. Designed to efficiently manage employee profiles, track historical records, and provide analytical insights for better organizational management.",
+      image: "/images/Graphic/DP-Profiling/dashboard.png",
+      status: "Local",
+      tags: ["Web App", "Profiling System", "Government", "Employee Management", "Laravel", "MySQL"],
+      link: null,
+      features: [
+        "Employee profiling",
+        "Historical data management",
+        "Dashboard analytics",
+        "Employee records tracking",
+        "Data visualization",
+        "Comprehensive reporting"
+      ],
+      gallery: [
+        "/images/Graphic/DP-Profiling/dashboard.png",
+        "/images/Graphic/DP-Profiling/emp_landpage.png",
+        "/images/Graphic/DP-Profiling/emp_mgmt.png",
+        "/images/Graphic/DP-Profiling/histo_mgmt.png"
+      ]
+    },
+    {
+      id: 9,
+      title: "BUKSO College Enrollment System",
+      description: "Bukso College Enrollment System, a web-based system designed to efficiently manage college enrollment processes, track student and faculty profiles, and provide analytical insights for better organizational management.",
+      image: "/images/Graphic/Enrollment/1.png",
+      status: "Local",
+      tags: ["Web App", "College Enrollment System", "College", "Enrollment", "Laravel", "MySQL"],
+      link: null,
+      features: [
+        "Student enrollment",
+        "Faculty profiling",
+        "Dashboard analytics",
+        "Student records tracking",
+        "Faculty records tracking",
+        "Comprehensive reporting"
+      ],
+      gallery: [
+        "/images/Graphic/Enrollment/1.png",
+        "/images/Graphic/Enrollment/2.png",
+        "/images/Graphic/Enrollment/6.png",
+        "/images/Graphic/Enrollment/7.png",
+        "/images/Graphic/Enrollment/8.png",
+        "/images/Graphic/Enrollment/10.png",
+        "/images/Graphic/Enrollment/cap.png",
+        "/images/Graphic/Enrollment/Capture.png"
+      ]
     }
   ];
 
@@ -210,6 +260,12 @@ export default function ProjectsPage() {
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+
+  // Debug logging
+  console.log('Total projects:', projects.length);
+  console.log('Current page:', currentPage);
+  console.log('Total pages:', totalPages);
+  console.log('Current projects:', currentProjects.map(p => ({ id: p.id, title: p.title })));
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
