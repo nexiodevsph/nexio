@@ -205,7 +205,7 @@ export default function ProjectsPage() {
       title: "BUKSO College Enrollment System",
       description: "Bukso College Enrollment System, a web-based system designed to efficiently manage college enrollment processes, track student and faculty profiles, and provide analytical insights for better organizational management.",
       image: "/images/Graphic/Enrollment/1.png",
-      status: "Local",
+      status: "Expired",
       tags: ["Web App", "College Enrollment System", "College", "Enrollment", "Laravel", "MySQL"],
       link: null,
       features: [
